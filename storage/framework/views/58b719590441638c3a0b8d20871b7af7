@@ -1,0 +1,40 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+    <div class="container">
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <div class="row">
+            <h1 class="pull-left">categorias</h1>
+            <a class="btn btn-primary pull-right" style="margin-top: 25px" href="<?php echo route('categorias.create'); ?>">Agregar</a>
+        </div>
+
+        <div class="row">
+            <?php if($categorias->isEmpty()): ?>
+                <div class="well text-center">No categorias found.</div>
+            <?php else: ?>
+                <table class="table">
+                    <thead>
+                    <th>Nombre</th>
+                    <th width="50px">Action</th>
+                    </thead>
+                    <tbody>
+                     
+                    <?php foreach($categorias as $categoria): ?>
+                        <tr>
+                            <td><?php echo $categoria->nombre; ?></td>
+                            <td>
+                                <a href="<?php echo route('categorias.edit', [$categoria->id]); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="<?php echo route('categorias.delete', [$categoria->id]); ?>" onclick="return confirm('Are you sure wants to delete this categoria?')"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

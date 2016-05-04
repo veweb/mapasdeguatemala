@@ -1,0 +1,53 @@
+
+
+
+<?php $__env->startSection('content'); ?>
+
+    <div class="container">
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <div class="row">
+            <h1 class="pull-left">Mantenimiento de Mapas</h1>
+            <a class="btn btn-primary pull-right" style="margin-top: 25px" href="<?php echo route('mapaslugares.create'); ?>">Agregar</a>
+        </div>
+
+        <div class="row">
+            <?php if($mapaslugares->isEmpty()): ?>
+                <div class="well text-center">No existe lista de mapas.</div>
+            <?php else: ?>
+                <table class="table">
+                    <thead>
+                        <th>IDM</th>
+                    <th>Nombre</th>
+        			<th>Imagen</th>
+        			<th>Estado</th>
+        			<th>Pais Id</th>
+        			<th>Departamento Id</th>
+        			<th>Municipio Id</th>
+                    <th width="50px">Action</th>
+                    </thead>
+                    <tbody>
+                     
+                    <?php foreach($mapaslugares as $mapaslugares): ?>
+                        <tr>
+                            <td><?php echo $mapaslugares->id; ?></td>
+                            <td><?php echo $mapaslugares->nombre; ?></td>
+        					<td><?php echo $mapaslugares->imagen; ?></td>
+        					<td><?php echo $mapaslugares->estado; ?></td>
+        					<td><?php echo $mapaslugares->pais($mapaslugares->pais_id); ?></td>
+        					<td><?php echo $mapaslugares->departamento($mapaslugares->departamento_id); ?></td>
+        					<td><?php echo $mapaslugares->municipio($mapaslugares->municipio_id); ?></td>
+                            <td>
+                                <a href="<?php echo route('mapaslugares.edit', [$mapaslugares->id]); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="<?php echo route('mapaslugares.delete', [$mapaslugares->id]); ?>" onclick="return confirm('Are you sure wants to delete this mapaslugares?')"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

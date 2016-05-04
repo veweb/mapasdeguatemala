@@ -1,0 +1,106 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+  
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="properties-items isotope" style="position: relative; overflow: hidden; height: 812px;">
+           <div class="container-fluid">
+                <div class="row">
+                    <h1 class="pull-left">Lista de Anuncios Publicados</h1>
+                    <a class="btn btn-primary pull-right" style="margin-top: 25px" href="<?php echo route('anuncios.create'); ?>">Agregar</a>
+                </div>
+            </div> 
+            
+                <div class="row">
+                    <?php if($anuncios->isEmpty()): ?>
+                        <div class="well text-center">No anuncios found.</div>
+                    <?php else: ?>
+                 
+                           
+                    <?php    $pos = 0; $i=0; $pos1 = 100; ?>
+                             <?php foreach($anuncios as $anuncio): ?>
+                             <?php if($i == '4'){
+                                         $i= 1;
+                                         $pos= 0;
+                                         $pos1= 450;
+                                        }
+                                        ?>
+                            <?php  if($anuncio->usuario_id == Auth::user()->id){ 
+                                $i= $i +1; 
+                                      
+                                ?>
+                              <div class="property-item property-featured col-sm-6 col-md-3 isotope-item" style="position: absolute; left: 40px; top: <?php echo $pos1; ?>px; transform: translate(<?php echo $pos; ?>px, 0px);">
+                                <div class="property-box">
+                                    <div class="property-box-inner">
+                                        <h3 class="property-box-title"><a href="<?php echo $anuncio->enlace; ?>"><?php echo $anuncio->titulo; ?></a></h3> 
+                                        <h4 class="property-box-subtitle"><a href="property-detail.html"><?php echo $anuncio->descripcion; ?></a></h4>
+
+                                        <div class="property-box-label property-box-label-primary">Prueba Gratis</div>
+                                    <!-- /.property-box-label -->
+
+                                        <div class="property-box-picture">
+                                        <div class="property-box-price">  <?php echo $i; ?> </div>
+                                        <!-- /.property-box-price -->
+                                        <div class="property-box-picture-inner">
+                                            <a class="property-box-picture-target" href="property-detail.html">
+                                                <img alt="" src="images/upload/anucios/<?php echo $anuncio->imagen; ?>">
+                                            </a><!-- /.property-box-picture-target -->
+                                        </div>
+                                        <!-- /.property-picture-inner -->
+                                    </div>
+                                    <!-- /.property-picture -->
+
+                                    <div class="property-box-meta">
+                                        <div class="property-box-meta-item col-xs-3 col-sm-3">
+                                            <strong>0</strong>
+                                            <span>ninguno</span>
+                                        </div>
+                                        <!-- /.col-sm-3 -->
+
+                                        <div class="property-box-meta-item col-xs-3 col-sm-3">
+                                            <strong>0</strong>
+                                            <span>ninguno</span>
+                                        </div>
+                                        <!-- /.col-sm-3 -->
+
+                                        <div class="property-box-meta-item col-xs-3 col-sm-3">
+                                            <strong>0</strong>
+                                            <span>ninguno</span>
+                                        </div>
+                                        <!-- /.col-sm-3 -->
+
+                                         <div class="property-box-meta-item col-xs-3 col-sm-3">
+                                            <strong>0</strong>
+                                            <span>ninguno</span>
+                                        </div>
+                                        <!-- /.col-sm-3 -->
+                                    </div>
+                                    <!-- /.property-box-meta -->
+                                </div>
+                                <!-- /.property-box-inner -->
+                            </div>
+                            <!-- /.property-box -->
+                            <div>  <a href="<?php echo route('anuncios.edit', [$anuncio->id]); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                        <a href="<?php echo route('anuncios.delete', [$anuncio->id]); ?>" onclick="return confirm('Are you sure wants to delete this anuncio?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                 </div>
+                        </div>
+                        <!-- /.property-item -->
+                        <?php $pos = $pos + 285; ?>
+                        <?php } ?>
+                        <?php endforeach; ?>
+                         
+                         </div> 
+                    <?php endif; ?>
+                   
+                </div>
+         </div>   
+<?php $__env->stopSection(); ?>
+   
+
+
+
+
+                              
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

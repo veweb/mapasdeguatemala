@@ -1,0 +1,44 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+    <div class="container">
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <div class="row">
+            <h1 class="pull-left">Departamentos</h1>
+            <a class="btn btn-primary pull-right" style="margin-top: 25px" href="<?php echo route('departamentos.create'); ?>">Agregar</a>
+        </div>
+
+        <div class="row">
+            <?php if($departamentos->isEmpty()): ?>
+                <div class="well text-center">No existen departamentos.</div>
+            <?php else: ?>
+                <table class="table">
+                    <thead>
+                   
+			<th>Pais Id</th>
+			<th>Nombre</th>
+                    <th width="50px">Action</th>
+                    </thead>
+                    <tbody>
+                     
+                    <?php foreach($departamentos as $departamento): ?>
+                        <tr>
+                            <td><?php echo $departamento->pais_id; ?></td>
+				
+					<td><?php echo $departamento->nombre; ?></td>
+                            <td>
+                                <a href="<?php echo route('departamentos.edit', [$departamento->id]); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="<?php echo route('departamentos.delete', [$departamento->id]); ?>" onclick="return confirm('Are you sure wants to delete this Departamento?')"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

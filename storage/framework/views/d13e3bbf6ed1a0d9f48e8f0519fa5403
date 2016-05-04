@@ -1,0 +1,21 @@
+
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+	<div class="row">
+	<h1 class="page-header"> Editar Anuncio </h1>
+
+    <?php echo $__env->make('common.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::model($anuncio, ['route' => ['anuncios.update', $anuncio->id], 'method' => 'patch']); ?>
+
+
+        <?php echo $__env->make('anuncios.fields', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::close(); ?>
+
+</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

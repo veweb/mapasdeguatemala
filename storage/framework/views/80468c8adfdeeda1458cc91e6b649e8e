@@ -1,0 +1,19 @@
+
+
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+
+    <?php echo $__env->make('common.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::model($mapaslugares, ['route' => ['mapaslugares.update', $mapaslugares->id], 'method' => 'patch']); ?>
+
+
+        <?php echo $__env->make('mapaslugares.fields', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::close(); ?>
+
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

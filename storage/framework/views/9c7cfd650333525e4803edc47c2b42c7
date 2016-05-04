@@ -1,0 +1,62 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo Form::open(); ?>
+
+
+		<div class="form-group">
+			<?php echo Form::label('Nombre:'); ?>
+
+			<?php echo Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingrese nombre de mapa']); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Mapa:'); ?>
+
+			<?php echo Form::file('imagen'); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Estado:'); ?>
+
+			<?php echo Form::select('departamento',array('' => 'seleccione un departamento','1'=>'Activo','0' =>'Inactivo')); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Alto:'); ?>
+
+	
+			<?php echo Form::text('alto',null,['class'=>'form-control','placeholder'=>'Selecione el acho']); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Ancho:'); ?>
+
+			<?php echo Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Seleccione el alto']); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Pais:'); ?>
+
+			<?php echo Form::select('pais',array('seleccione un pais')); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Departamento:'); ?>
+
+			<?php echo Form::select('departamento',array('seleccione un departamento')); ?>
+
+		</div>
+		<div class="form-group">
+			<?php echo Form::label('Municipio:'); ?>
+
+			<?php echo Form::select('municipio',array('seleccione un municipio')); ?>
+
+		</div>
+		<?php echo Form::Close(); ?>
+
+
+<button class="btn btn-primary">Guardar</button>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

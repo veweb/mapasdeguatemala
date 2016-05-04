@@ -1,0 +1,19 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+  
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="properties-items isotope" style="position: relative; overflow: hidden; height: 812px;">
+           <div class="container-fluid">
+                <div class="row">
+                    <h1 class="pull-left">Lista de Anuncios Publicados lista</h1>
+                    <a class="btn btn-primary pull-right" style="margin-top: 25px" href="<?php echo route('anuncios.create'); ?>">Agregar</a>
+                </div>
+            </div> 
+            
+              
+         </div>   
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
